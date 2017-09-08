@@ -5,7 +5,9 @@ const listAllBooks = () => {
     SELECT
       *
     FROM
-      book`)
+      book
+    ORDER BY
+      title`)
     .catch(error => {
       console.error({message: "error while trying to retrieve books",
                      arguments: arguments})

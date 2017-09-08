@@ -3,14 +3,14 @@ const bookstoreDb = require('../../models/bookDbFunctions')
 
 router.get('/bookstore', (request, response) => {
   bookstoreDb.listAllBooks()
-    .then(data => {response.render('index', {books: data.rows})
+    .then(books => {response.render('index', {books: books.rows})
   })
 })
 
 router.get('/bookstore/:id', (request, response) => {
   const id = request.params.id
   bookstoreDb.listSingleBook(id)
-    .then(book => {response.send(book)})
+    .then(book => {response.render('book', {book: book})})
 })
 
 module.exports = router;

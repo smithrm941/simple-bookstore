@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bookstore</title>
-  </head>
-  <body>
-    <div class="all-books">
-      <% books.forEach(function(book){ %>
-        <p>
-          <%= book.title %>
-          <%= book.author%>
-          <%= book.genre%>
-          <%= book.pages%>
-          <%= book.publisher%>
-        </p>
-      <% }) %>
+<%- include header.ejs %>
+
+  </div>
+    <div class = "all-books">
+      <table class="table table-hover table-responsive">
+        <thead>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+        </thead>
+        <tbody>
+          <% books.forEach(function(book){ %>
+            <tr>
+              <td>
+                <a href="/bookstore/<%= book.id %>">
+                  <%= book.title %>
+                </a>
+              </td>
+              <td><%= book.author %></td>
+              <td><%= book.genre %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
-  </body>
-</html>
+
+<%- include footer.ejs %>
