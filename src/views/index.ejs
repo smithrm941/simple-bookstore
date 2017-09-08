@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bookstore</title>
+  </head>
+  <body>
+    <div class="all-books">
+      <% books.forEach(function(book){ %>
+        <p>
+          <%= book.title %>
+          <%= book.author%>
+          <%= book.genre%>
+          <%= book.pages%>
+          <%= book.publisher%>
+        </p>
+      <% }) %>
+    </div>
+  </body>
+</html>
