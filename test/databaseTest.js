@@ -11,6 +11,16 @@ describe(`listAllBooks`, () => {
   })
 })
 
+describe(`listSingleBook`, () => {
+  it.only(`should return a single book based on id`, () => {
+    return query.listSingleBook(3)
+      .then(data => {
+        console.log(data)
+        expect(data.title).to.deep.equal('God Created the Integers')
+      })
+  })
+})
+
 describe(`searchByTitle`, () => {
   it(`should return 3 rows when searching for Batman`, () => {
     return query.searchByTitle('Batman')
@@ -39,7 +49,7 @@ describe(`searchByAuthor`, () => {
 })
 
 describe(`searchByGenre`, () => {
-  it.only(`should return 30 rows when searching for nonfiction`, () => {
+  it(`should return 30 rows when searching for nonfiction`, () => {
     return query.searchByGenre('nonfiction')
       .then(data => {
         console.log(data)

@@ -6,4 +6,10 @@ router.get('/bookstore', (request, response) => {
     .then(data => {response.send(data.rows)})
 })
 
+router.get('/bookstore/:id', (request, response) => {
+  const id = request.params.id
+  bookstoreDb.listSingleBook(id)
+    .then(data => {response.send(data)})
+})
+
 module.exports = router;

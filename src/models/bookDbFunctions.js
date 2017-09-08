@@ -12,6 +12,19 @@ const listAllBooks = () => {
       throw error})
 }
 
+const listSingleBook = (id) => {
+  return db.one( `
+    SELECT
+      *
+    FROM
+      book
+    WHERE id = $1`, [id])
+    .catch(error=> {
+      console.error({message: "error while trying to retrieve book",
+                     arguments: arguments})
+      throw error})
+}
+
 const searchByTitle = (title) => {
   return db.any(`
     SELECT
@@ -68,6 +81,7 @@ const searchByGenre = (genre) => {
 
 module.exports = {
   listAllBooks,
+  listSingleBook,
   searchByTitle,
   searchByAuthor,
   searchByGenre
