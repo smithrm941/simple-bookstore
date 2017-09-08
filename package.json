@@ -1,0 +1,30 @@
+{
+  "name": "simple-bookstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "load_schema": "psql < src/models/schema.sql",
+    "load_books": "psql -d bookstore < test/seedData.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smithrm941/simple-bookstore.git"
+  },
+  "author": "Rhonda Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smithrm941/simple-bookstore/issues"
+  },
+  "homepage": "https://github.com/smithrm941/simple-bookstore#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "pg-promise": "^6.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0"
+  }
+}
