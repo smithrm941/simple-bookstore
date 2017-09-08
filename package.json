@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/server/server.js",
     "test": "mocha",
     "load_schema": "psql < src/models/schema.sql",
     "load_books": "psql -d bookstore < test/seedData.sql"
@@ -19,12 +20,15 @@
   },
   "homepage": "https://github.com/smithrm941/simple-bookstore#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "method-override": "^2.3.9",
     "pg-promise": "^6.5.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "nodemon": "^1.12.0"
   }
 }
