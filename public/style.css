@@ -1,3 +1,15 @@
 .book-form-title{
   margin-top: 20px;
 }
+
+#edit-individual-book{
+  display: none;
+}
+
+#save-button{
+  display: none;
+}
+
+#delete-button{
+  display:none;
+}

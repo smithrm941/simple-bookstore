@@ -27,11 +27,31 @@ router.post('/new-book', (request, response) => {
 })
 
 router.get('/:id', (request, response) => {
-  const id = request.params.id
+  let id = request.params.id
   bookstoreDb.listSingleBook(id)
     .then(book => {response.render('book', {book: book})})
 })
 
+router.put('/:id', (request, response) => {
+  let id = request.params.id
+  // let book = {
+  //   title: request.body.title,
+  //   author: request.body.author,
+  //   genre: request.body.genre,
+  //   pages: request.body.pages,
+  //   publisher: request.body.publisher
+  // }
+  bookstoreDb.updateBook(id)
+    // .then((updatedBook) => {
+    //   response.render(`/bookstore/${updatedBook.id}`)
+    // })
+})
+
+router.delete('/:id', (request, response) => {
+  let id = request.params.id
+  bookstoreDb.deleteBook(id)
+    .then(response.redirect('/'))
+})
 
 
 module.exports = router;

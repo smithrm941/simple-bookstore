@@ -1,6 +1,6 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const bodyParser = require('body-parser')
 const routes = require('./server/routes')
 const app = express()
 
@@ -10,12 +10,11 @@ app.set('views', 'src/views')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(methodOverride('_method'))
 app.use((request, response, next) => {
   response.locals.query = ''
   next()
 })
-
-app.use(methodOverride('_method'))
 
 app.use('/', routes ) //what does this do?
 

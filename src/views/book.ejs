@@ -10,13 +10,27 @@
       <th>Publisher</th>
     </thead>
     <tbody>
-        <tr>
+        <tr id="individual-book-data">
           <td><%= book.title %></td>
           <td><%= book.author %></td>
           <td><%= book.genre %></td>
           <td><%= book.pages %></td>
           <td><%= book.publisher %></td>
         </tr>
+        <tr id="edit-individual-book">
+        <button id="edit-button">Edit</button>
+        <form method="post" action="/bookstore/<%= book.id %>?_method=PUT">
+            <td><input type="text" name="editTitle" value="<%= book.title %>"/></td>
+            <td><input type="text" name="editAuthor" value="<%= book.author %>"/></td>
+            <td><input type="text" name="editGenre" value="<%= book.genre %>"/></td>
+            <td><input type="text" name="editPages" value="<%= book.pages %>"/></td>
+            <td><input type="text" name="editPublisher" value="<%= book.publisher %>"/></td>
+          </tr>
+          <span><button id="save-button" type="submit">Save</button></span>
+        </form>
+        <form action="/bookstore/<%= book.id %>?_method=DELETE" method="post" >
+          <span><button id="delete-button" type="submit">Delete</button></span>
+        </form>
     </tbody>
   </table>
 </div>
