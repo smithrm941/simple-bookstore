@@ -1,18 +1,23 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const bookstore = require('./routes/bookstore')
+const routes = require('./server/routes')
 const app = express()
 
 app.set('view engine', 'ejs');
 app.set('views', 'src/views')
 
 app.use(express.static('public'))
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use((request, response, next) => {
+  response.locals.query = ''
+  next()
+})
 
 app.use(methodOverride('_method'))
 
-app.use('/', bookstore )
+app.use('/', routes ) //what does this do?
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

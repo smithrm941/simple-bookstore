@@ -73,18 +73,22 @@ const searchByGenre = (genre) => {
       throw error})
 }
 
-// const createBook = (book) => {
-//   return db.one(`
-//     INSERT INTO
-//       books (name, author, genre, pages, publisher)
-//     VALUES
-//       $1, $2, `)
-// }
+const createBook = (book) => {
+  return db.one(`
+    INSERT INTO
+      book (title, author, genre, pages, publisher)
+    VALUES
+      ($/title/, $/author/, $/genre/, $/pages/, $/publisher/)
+    RETURNING
+      *
+    `, book)
+}
 
 module.exports = {
   listAllBooks,
   listSingleBook,
   searchByTitle,
   searchByAuthor,
-  searchByGenre
+  searchByGenre,
+  createBook
 }

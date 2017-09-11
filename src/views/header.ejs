@@ -3,17 +3,20 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/script.js"></script>
     <title>Bookstore</title>
   </head>
   <body>
-    <h1>Rhonda's Dang Ol' Awesome Bookstore</h1>
-    <form class="search-form">
-      <select>
+    <h1><a href="/">Rhonda's Dang Ol' Awesome Bookstore</a></h1>
+    <form class="form-inline search-form">
+      <select id="search-type">
         <option value="title">Title</option>
         <option value="author">Author</option>
         <option value="genre">Genre</option>
       </select>
-      <input type="search">
-      <button>Search</button>
+      <input id="search-box" type="search" value="<%= query %>" name="q" method="get" action="/bookstore/search">
+      <button id="search-button" type="submit">Search</button>
+      <a href="/bookstore/new-book" id="add-book" class="ml-5">Add Book</a>
     </form>

@@ -1,0 +1,19 @@
+<%- include header.ejs %>
+  <h3 class="book-form-title">Add a book to the database</h3>
+  <form method="post" action-"/new-book" class="new-book-form">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" class="form-control"/>
+      <label>Author</label>
+      <input type="text" name="author" class="form-control"/>
+      <label>Genre</label>
+      <input type="text" name="genre" class="form-control"/>
+      <label>Pages</label>
+      <input type="text" name="pages" class="form-control"/>
+      <label>Publisher</label>
+      <input type="text" name="publisher" class="form-control"/>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+<%- include footer.ejs %>

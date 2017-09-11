@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server/server.js",
+    "start": "nodemon src/server.js",
     "test": "mocha",
     "load_schema": "psql < src/models/schema.sql",
     "load_books": "psql -d bookstore < test/seedData.sql"
