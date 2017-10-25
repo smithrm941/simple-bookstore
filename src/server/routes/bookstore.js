@@ -1,12 +1,15 @@
 const router = require('express').Router()
 const bookstoreDb = require('../../models/bookDbFunctions')
 
-// router.get('/search', (request, response => {
-//   const query = request.query.q;
-//   bookstoreDb.searchByTitle(query)
-//     .then(searchResult => {response.render('searchResults', {query})})
-//     // .then(searchResult => {console.log(searchResult), {query: query}})
-// })
+router.get('/search', (request, response) => {
+  let query = request.query.q;
+  bookstoreDb.searchBooks(query)
+    .then((searchResult) => {
+      response.render('searchResults', {query: query, searchResult: searchResult})
+  }).catch(error => {
+    console.error(error)
+  })
+})
 
 router.get('/new-book', (request, response) => {
   response.render('newBookForm')
@@ -29,22 +32,18 @@ router.post('/new-book', (request, response) => {
 router.get('/:id', (request, response) => {
   let id = request.params.id
   bookstoreDb.listSingleBook(id)
-    .then(book => {response.render('book', {book: book})})
+    .then(book => {response.render('book', {book: book})
+  })
 })
 
+//can't edit through form! >:(
 router.put('/:id', (request, response) => {
   let id = request.params.id
-  // let book = {
-  //   title: request.body.title,
-  //   author: request.body.author,
-  //   genre: request.body.genre,
-  //   pages: request.body.pages,
-  //   publisher: request.body.publisher
-  // }
-  bookstoreDb.updateBook(id)
-    // .then((updatedBook) => {
-    //   response.render(`/bookstore/${updatedBook.id}`)
-    // })
+  let book = request.body
+  bookstoreDb.updateBook(id, book)
+    .then((book) => {
+      response.redirect(`/bookstore/${id}`)
+    }).catch(error => console.error(error.message))
 })
 
 router.delete('/:id', (request, response) => {

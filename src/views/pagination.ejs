@@ -1,0 +1,14 @@
+<%if ((pageStart - 5) > 0) { %>
+  <a href="/?page=<%= pageStart - 5 %>"><<</a>
+<% } else if (pageStart === 1) { %>
+    <a href="/?page=<%= 1%>"><<</a>
+<% } else if ((pageStart - 5) !==0) { %>
+  <a href="/?page=<%= pageStart - 1 %>"><<</a>
+<% } else if ((pageStart -5) === 0) { %>
+  <a href="/?page=<%= 1%>"><<</a>
+<% } %>
+
+<% for(let i=pageStart; i<(pageStart + numPages); i++) {%>
+  <a href="/?page=<%= i %>"><%= i%></a>
+<% } %>
+<a href="/?page=<%= pageStart + 5 %>">>></a>

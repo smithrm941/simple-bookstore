@@ -10,13 +10,8 @@
   </head>
   <body>
     <h1><a href="/">Rhonda's Dang Ol' Awesome Bookstore</a></h1>
-    <form class="form-inline search-form">
-      <select id="search-type">
-        <option value="title">Title</option>
-        <option value="author">Author</option>
-        <option value="genre">Genre</option>
-      </select>
-      <input id="search-box" type="search" value="<%= query %>" name="q" method="get" action="/bookstore/search">
+    <form class="form-inline search-form" method="get" action="/bookstore/search">
+      <input id="search-box" type="search" name="q">
       <button id="search-button" type="submit">Search</button>
-      <a href="/bookstore/new-book" id="add-book" class="ml-5">Add Book</a>
     </form>
+    <a href="/bookstore/new-book" id="add-book" class="ml-5">Add Book</a>

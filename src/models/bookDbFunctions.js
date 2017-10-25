@@ -14,61 +14,45 @@ const listAllBooks = () => {
       throw error})
 }
 
+const listByOffset = (limit, offset) => {
+  return db.result(`
+    SELECT
+      *
+    FROM
+      book
+    ORDER BY
+      title
+    LIMIT $1
+    OFFSET $2`, [limit, offset])
+    .catch(error => {
+      console.error({message: "error while trying to retrieve books",
+                     arguments: arguments})
+      throw error})
+}
+
 const listSingleBook = (id) => {
   return db.one( `
     SELECT
       *
     FROM
       book
-    WHERE id = $1`, [id])
+    WHERE id = ${id}`)
     .catch(error=> {
       console.error({message: "error while trying to retrieve book",
                      arguments: arguments})
       throw error})
 }
 
-const searchByTitle = (title) => {
+const searchBooks = (title) => {
   return db.any(`
     SELECT
       *
     FROM
       book
     WHERE
-      title
-    LIKE
-      $1`, ['%' + title + '%'])
+      lower(title) LIKE $1`, [`%${title.toLowerCase().replace(/\s+/,'%')}%`])
     .catch(error => {
       console.error({message: "error while trying to retrieve books by title",
-                     arguments: arguments})
-      throw error})
-}
-
-const searchByAuthor = (author) => {
-  return db.any(`
-    SELECT
-      *
-    FROM
-      book
-    WHERE
-      author
-    LIKE
-      $1`, ['%' + author + '%'])
-    .catch(error => {
-      console.error({message: "error while trying to retrieve books by author",
-                     arguments: arguments})
-      throw error})
-}
-
-const searchByGenre = (genre) => {
-  return db.any(`
-    SELECT
-      *
-    FROM
-      book
-    WHERE
-      genre = $1`, [genre])
-    .catch(error => {
-      console.error({message: "error while trying to retrieve books by genre",
                      arguments: arguments})
       throw error})
 }
@@ -88,15 +72,15 @@ const createBook = (book) => {
       throw error})
 }
 
-const updateBook = (id) => {
+const updateBook = (id, title, author, genre, pages, publisher) => {
   return db.one(`
     UPDATE
-      book (title, author, genre, pages, publisher)
+      book
     SET
-      (title = $/title/, author = $/author/, genre = $/genre/, pages = $/pages/, publisher = $/publisher/)
+      title = $/title/, author = 'plucky ssduck', genre = 'bugsssss bunny', pages = 192, publisher = 'office max'
     WHERE
-      id = $1
-    `, [id])
+      id = ${id}
+    `)
     .catch(error => {
       console.error({message: "error while trying to update book",
                      arguments: arguments})
@@ -119,10 +103,9 @@ const deleteBook = (id) => {
 module.exports = {
   listAllBooks,
   listSingleBook,
-  searchByTitle,
-  searchByAuthor,
-  searchByGenre,
+  searchBooks,
   createBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  listByOffset
 }
